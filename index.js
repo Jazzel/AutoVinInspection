@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3200;
 app.use(express.json());
 app.set("view engine", "ejs");
 
+app.use("/img", express.static(__dirname + "/assets/img"));
+
 app.use("", require("./routes/home"));
 app.use("", require("./routes/auth"));
 
