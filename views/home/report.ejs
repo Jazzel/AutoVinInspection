@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+
+</head>
+
+<body>
+
+    <div class="bg-dark">
+        <header class="container pt-4 pb-4">
+            <%- include('../partials/header'); %>
+        </header>
+
+        <section class="container py-5 text-light" style="display: flex; justify-content: center;flex-direction: column;
+         align-items: center;">
+            <h1 class="pt-3">Report</h1>
+            <h5 class="pt-4 pb-4 w-50 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore hic
+                ducimus
+                illo laborum praesentium
+                pariatur aut laudantium sint, similique, qui possimus officia earum nulla dolorem ullam voluptate sequi
+                eveniet distinctio.</h5>
+        </section>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#fff" fill-opacity="1" d="M0,0L480,128L960,32L1440,256L1440,320L960,320L480,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+
+
+    <main class="container pb-5 mb-5">
+        <div class="container">
+            <h1>Report</h1>
+
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="card shadow p-3">
+                        <div class="card-body">
+                            <h4 class="card-title" id="vin">Payment - </h4>
+                            <p class="card-text">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <h5>Username: </h5>
+                                    <p id="username"></p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h5>Email</h5>
+                                    <p id="email"></p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h5>Report Type</h5>
+                                    <p id="reportType"></p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h5>Report Price</h5>
+                                    <p id="reportPrice"></p>
+                                </div>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <form id="payment-form" class="w-100 shadow">
+                            <div id="payment-element">
+                            </div>
+                            <button id="submit">
+                                <div class="spinner hidden" id="spinner"></div>
+                                <span id="button-text">Pay now</span>
+                            </button>
+                            <div id="payment-message" class="hidden"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+            <script>
+                if (!localStorage.getItem("report-loaded")) {
+                    window.location.href = "/login";
+
+                }
+
+            </script>
+
+            <script>
+                const data = localStorage.getItem("report");
+
+                const report = JSON.parse(data);
+
+                const username = document.getElementById("username");
+                const email = document.getElementById("email");
+                const reportType = document.getElementById("reportType");
+                const reportPrice = document.getElementById("reportPrice");
+                const vin = document.getElementById("vin");
+
+                username.innerHTML = report.name;
+                email.innerHTML = report.email;
+                reportType.innerHTML = report.insuranceType === "information" ? "Vehicle Information History" : report.insuranceType === "history" ? "Vehicle History Specification" : "Vehicle Information + History";
+                reportPrice.innerHTML = report.insurancePrice + "$";
+                vin.innerHTML += report.vinNumber;
+
+            </script>
+
+            <script>
+                // This is a public sample test API key.
+                // Don’t submit any personally identifiable information in requests made with this key.
+                // Sign in to see your own test API key embedded in code samples.
+                const stripe = Stripe("pk_test_oCAxK0CcUTHFsfOEu531pLYK00rYFcE5uu");
+
+
+                // The items the customer wants to buy
+                const items = [{ id: "price_1LgPVkAcdubkaULyvP4Sv1cY" }];
+
+                let elements;
+
+                initialize();
+                checkStatus();
+
+                document
+                    .querySelector("#payment-form")
+                    .addEventListener("submit", handleSubmit);
+
+                // Fetches a payment intent and captures the client secret
+                async function initialize() {
+                    const response = await fetch("/create-payment-intent", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username: report.name, email: report.email, reportType: report.insuranceType, reportPrice: report.insurancePrice, vin: report.vinNumber }),
+                    });
+                    const { clientSecret } = await response.json();
+
+                    const appearance = {
+                        theme: 'stripe',
+                    };
+                    elements = stripe.elements({ appearance, clientSecret });
+
+                    const paymentElement = elements.create("payment");
+                    paymentElement.mount("#payment-element");
+                }
+
+                async function handleSubmit(e) {
+                    e.preventDefault();
+                    setLoading(true);
+
+                    const { error } = await stripe.confirmPayment({
+                        elements,
+                        confirmParams: {
+                            // Make sure to change this to your payment completion page
+                            return_url: "http://localhost:3200/report",
+                        },
+                    });
+
+                    // This point will only be reached if there is an immediate error when
+                    // confirming the payment. Otherwise, your customer will be redirected to
+                    // your `return_url`. For some payment methods like iDEAL, your customer will
+                    // be redirected to an intermediate site first to authorize the payment, then
+                    // redirected to the `return_url`.
+                    if (error.type === "card_error" || error.type === "validation_error") {
+                        showMessage(error.message);
+                    } else {
+                        console.log(error)
+                        showMessage("An unexpected error occurred.");
+                    }
+
+                    setLoading(false);
+                }
+
+                // Fetches the payment intent status after payment submission
+                async function checkStatus() {
+                    const clientSecret = new URLSearchParams(window.location.search).get(
+                        "payment_intent_client_secret"
+                    );
+
+                    if (!clientSecret) {
+                        return;
+                    }
+
+                    const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+                    switch (paymentIntent.status) {
+                        case "succeeded": {
+                            showMessage("Payment succeeded!");
+                            alert("Payment succeeded!");
+                            localStorage.setItem("payment", true);
+                            window.location.href = "/generate-report";
+                            break;
+                        }
+
+                        case "processing":
+                            showMessage("Your payment is processing.");
+                            break;
+                        case "requires_payment_method": {
+                            localStorage.setItem("payment", false);
+
+                            showMessage("Your payment was not successful, please try again.");
+                            break;
+                        }
+                        default: {
+                            showMessage("Something went wrong.");
+                            localStorage.setItem("payment", false);
+                            break;
+                        }
+                    }
+                }
+
+                // ------- UI helpers -------
+
+                function showMessage(messageText) {
+                    const messageContainer = document.querySelector("#payment-message");
+
+                    messageContainer.classList.remove("hidden");
+                    messageContainer.textContent = messageText;
+
+                    setTimeout(function () {
+                        messageContainer.classList.add("hidden");
+                        messageText.textContent = "";
+                    }, 4000);
+                }
+
+                // Show a spinner on payment submission
+                function setLoading(isLoading) {
+                    if (isLoading) {
+                        // Disable the button and show a spinner
+                        document.querySelector("#submit").disabled = true;
+                        document.querySelector("#spinner").classList.remove("hidden");
+                        document.querySelector("#button-text").classList.add("hidden");
+                    } else {
+                        document.querySelector("#submit").disabled = false;
+                        document.querySelector("#spinner").classList.add("hidden");
+                        document.querySelector("#button-text").classList.remove("hidden");
+                    }
+                }
+            </script>
+    </footer>
+
+</body>
+
+</html>

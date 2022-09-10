@@ -16,4 +16,12 @@ router.get("/pricing", (req, res) => {
   res.render("home/pricing");
 });
 
+router.get("/report", (req, res) => {
+  res.render("home/report");
+});
+
+router.get("/generate-report", (req, res) => {
+  res.render("home/generate-report");
+});
+
 module.exports = router;

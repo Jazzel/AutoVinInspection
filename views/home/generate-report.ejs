@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+    <div class="bg-dark">
+        <header class="container pt-4 pb-4">
+            <%- include('../partials/header'); %>
+        </header>
+
+        <section class="container py-5 text-light" style="display: flex; justify-content: center;flex-direction: column;
+         align-items: center;">
+            <h1 class="pt-3">Generated Report</h1>
+            <h5 class="pt-4 pb-4 w-50 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore hic
+                ducimus
+                illo laborum praesentium
+                pariatur aut laudantium sint, similique, qui possimus officia earum nulla dolorem ullam voluptate sequi
+                eveniet distinctio.</h5>
+        </section>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#fff" fill-opacity="1" d="M0,0L480,128L960,32L1440,256L1440,320L960,320L480,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+
+
+    <main class="container pb-5 mb-5" id="pdf">
+        <div class="container">
+            <div class="card shadow-lg">
+                <div class="card-header bg-dark text-light text-center p-3">
+                    <h1 id="vin">Generated Report - </h1>
+                    <h2 id="insuranceType"></h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h5>Username: </h5>
+                            <p id="username"></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Email</h5>
+                            <p id="email"></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Report Type</h5>
+                            <p id="reportType"></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Report Price</h5>
+                            <p id="reportPrice"></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Report ID</h5>
+                            <p id="reportID"></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Date Generated</h5>
+                            <p id="reportDate"></p>
+                        </div>
+
+                    </div>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="specs">
+                        <div class="card shadow">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font" id="vname">Basic Details - </h2>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <h5>Vin</h5>
+                                        <p id="vin2"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Year: </h5>
+                                        <p id="year"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Make: </h5>
+                                        <p id="make"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Model: </h5>
+                                        <p id="model"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Style</h5>
+                                        <p id="style"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Made In: </h5>
+                                        <p id="madeIn"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Made In: </h5>
+                                        <p id="trim"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Engine:</h5>
+                                        <p id="engine"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Transmission: </h5>
+                                        <p id="transmission"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Cylinders: </h5>
+                                        <p id="cylinders"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Wheel drive: </h5>
+                                        <p id="wheelDrive"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Steering Type: </h5>
+                                        <p id="steeringType"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Fuel type: </h5>
+                                        <p id="fuelType"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Tank Size: </h5>
+                                        <p id="tankSize"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Clearance: </h5>
+                                        <p id="clearance"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Tires: </h5>
+                                        <p id="tires"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Anti Brake System: </h5>
+                                        <p id="antiBrakeSystem"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Anti-theft system: </h5>
+                                        <p id="antiTheftSystem"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Standard Seating: </h5>
+                                        <p id="standardSeating"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Optional Seating: </h5>
+                                        <p id="optionalSeating"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Overall Height: </h5>
+                                        <p id="overallHeight"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Overall Length: </h5>
+                                        <p id="overallLength"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Overall Width: </h5>
+                                        <p id="overallWidth"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Standard GVWR: </h5>
+                                        <p id="standardGVWR"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Highway Mileage: </h5>
+                                        <p id="highwayMileage"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>City Mileage: </h5>
+                                        <p id="cityMileage"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Drivetrain: </h5>
+                                        <p id="drivetrain"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Front brake type: </h5>
+                                        <p id="frontBrakeType"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Rear brake type: </h5>
+                                        <p id="rearBrakeType"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Turning diameter: </h5>
+                                        <p id="turningDiameter"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Front suspension: </h5>
+                                        <p id="frontSuspension"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Rear suspension: </h5>
+                                        <p id="rearSuspension"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Front spring type: </h5>
+                                        <p id="frontSpringType"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Rear spring type: </h5>
+                                        <p id="rearSpringType"></p>
+                                    </div>
+                                </div>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card shadow">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font" id="vname">Cost & Warranties</h2>
+
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <h5>Invoice price:</h5>
+                                        <p id="invoicePrice"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Delivery charges: </h5>
+                                        <p id="deliveryCharges"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Manufacturer suggested retail price:</h5>
+                                        <p id="manufacturerSuggestedRetailPrice"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Production seq number:</h5>
+                                        <p id="productionSeqNumber"></p>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <h5>Warranties: Basic</h5>
+                                        <p id="warrantiesBasic"></p>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <h5>Warranties: Powertrain</h5>
+                                        <p id="warrantiesPowertrain"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Warranties: Rust</h5>
+                                        <p id="warrantiesRust"></p>
+                                    </div>
+
+                                </div>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="history">
+                        <div class=" card shadow mt-3">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font">Vehicle History</h2>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Title</h4>
+                                <p class="card-text">Text</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+            <script>
+                if (!localStorage.getItem("payment")) {
+                    window.location.href = "/report";
+
+                }
+
+            </script>
+            <script>
+                var doc = new jsPDF();
+
+                var source = window.document.getElementsByTagName("body")[0];
+                var specialElementHandlers = {
+                    '#hidden-element': function (element, renderer) {
+                        return true;
+                    }
+                };
+                var doc = new jsPDF({
+                    orientation: 'landscape'
+                });
+                doc.setFont("courier");
+                doc.setFontType("normal");
+                doc.setFontSize(24);
+                doc.setTextColor(100);
+                doc.fromHTML(elementHTML, 15, 15, {
+                    'width': 170,
+                    'elementHandlers': specialElementHandlers
+                });
+
+            </script>
+            <script>
+
+                function makeid(length) {
+                    var result = '';
+                    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                    var charactersLength = characters.length;
+                    for (var i = 0; i < length; i++) {
+                        result += characters.charAt(Math.floor(Math.random() *
+                            charactersLength));
+                    }
+                    return result;
+                }
+
+
+                const data = localStorage.getItem("report");
+
+                const report = JSON.parse(data);
+
+                const specs = document.querySelector(".specs");
+                const history = document.querySelector(".history");
+                if (report.insuranceType === "history") {
+                    specs.style.display = "none";
+                    history.style.display = "none";
+
+                    history.style.display = "block";
+
+
+                    document.getElementById("insuranceType").innerHTML = "Vehicle History";
+                } else if (report.insuranceType === "information") {
+                    specs.style.display = "none";
+                    history.style.display = "none";
+
+                    specs.style.display = "block";
+                    document.getElementById("insuranceType").innerHTML = "Vehicle Insurance";
+                }
+                else if (report.insuranceType === "both") {
+                    specs.style.display = "block";
+                    history.style.display = "block";
+                    document.getElementById("insuranceType").innerHTML = "Vehicle Insurance & History";
+                }
+
+                // if (data.re)
+
+                const username = document.getElementById("username");
+                const email = document.getElementById("email");
+                const reportType = document.getElementById("reportType");
+                const reportPrice = document.getElementById("reportPrice");
+                const vin = document.getElementById("vin");
+                const reportID = document.getElementById("reportID");
+                const dateGenerated = document.getElementById("reportDate");
+
+
+                const vname = document.getElementById("vname");
+                const style = document.getElementById("style");
+                const madeIn = document.getElementById("madeIn");
+                const engine = document.getElementById("engine");
+                const trim = document.getElementById("trim");
+                const year = document.getElementById("year");
+                const make = document.getElementById("make");
+                const model = document.getElementById("model");
+                const vin2 = document.getElementById("vin2");
+                const transmission = document.getElementById("transmission");
+                const cylinders = document.getElementById("cylinders");
+                const wheelDrive = document.getElementById("wheelDrive");
+                const steeringType = document.getElementById("steeringType");
+                const fuelType = document.getElementById("fuelType");
+                const tankSize = document.getElementById("tankSize");
+                const clearance = document.getElementById("clearance");
+                const tires = document.getElementById("tires");
+                const antiBrakeSystem = document.getElementById("antiBrakeSystem");
+                const antiTheftSystem = document.getElementById("antiTheftSystem");
+                const standardSeating = document.getElementById("standardSeating");
+                const optionalSeating = document.getElementById("optionalSeating");
+                const overallHeight = document.getElementById("overallHeight");
+                const overallLength = document.getElementById("overallLength");
+                const overallWidth = document.getElementById("overallWidth");
+                const standardGVWR = document.getElementById("standardGVWR");
+                const highwayMileage = document.getElementById("highwayMileage");
+                const cityMileage = document.getElementById("cityMileage");
+                const turningDiameter = document.getElementById("turningDiameter");
+                const frontSuspension = document.getElementById("frontSuspension");
+                const rearSuspension = document.getElementById("rearSuspension");
+                const frontSpringType = document.getElementById("frontSpringType");
+                const rearSpringType = document.getElementById("rearSpringType");
+                const tyres = document.getElementById("tires");
+                const frontBrakeType = document.getElementById("frontBrakeType");
+                const rearBrakeType = document.getElementById("rearBrakeType");
+                const drivetrain = document.getElementById("drivetrain");
+
+
+                const invoicePrice = document.getElementById("invoicePrice");
+                const deliveryCharges = document.getElementById("deliveryCharges");
+                const manufacturerSuggestedRetailPrice = document.getElementById("manufacturerSuggestedRetailPrice");
+                const productionSeqNumber = document.getElementById("productionSeqNumber");
+                const warrantiesBasic = document.getElementById("warrantiesBasic");
+                const warrantiesPowertrain = document.getElementById("warrantiesPowertrain");
+                const warrantiesRust = document.getElementById("warrantiesRust");
+
+
+
+
+
+                username.innerHTML = report.name;
+                email.innerHTML = report.email;
+                reportType.innerHTML = report.insuranceType === "information" ? "Vehicle Information History" : report.insuranceType === "history" ? "Vehicle History Specification" : "Vehicle Information + History";
+
+                reportPrice.innerHTML = report.insurancePrice + "$";
+                vin.innerHTML += report.vinNumber;
+
+                reportID.innerHTML = makeid(7);
+                dateGenerated.innerHTML = new Date().toDateString();
+                console.log(Object.keys(report))
+
+                const attributes = report?.attributes;
+
+                vname.innerHTML += attributes?.year + " " + attributes?.make + " " + attributes?.model + " " + attributes?.trim;
+                style.innerHTML = attributes?.style;
+                madeIn.innerHTML = attributes?.made_in;
+                engine.innerHTML = attributes?.engine;
+                trim.innerHTML = attributes?.trim;
+                year.innerHTML = attributes?.year;
+                make.innerHTML = attributes?.make;
+                model.innerHTML = attributes?.model;
+                vin2.innerHTML = report.vinNumber;
+                transmission.innerHTML = attributes?.transmission;
+                cylinders.innerHTML = attributes?.cylinders;
+                wheelDrive.innerHTML = attributes?.wheel_drive;
+                steeringType.innerHTML = attributes?.steering_type;
+                fuelType.innerHTML = attributes?.fuel_type;
+                tankSize.innerHTML = attributes?.tank_size;
+                clearance.innerHTML = attributes?.clearance;
+                tires.innerHTML = attributes?.tires;
+                antiBrakeSystem.innerHTML = attributes?.anti_brake_system;
+                antiTheftSystem.innerHTML = attributes?.anti_theft_system;
+                standardSeating.innerHTML = attributes?.standard_seating;
+                optionalSeating.innerHTML = attributes?.optional_seating;
+                overallHeight.innerHTML = attributes?.overall_height;
+                overallLength.innerHTML = attributes?.overall_length;
+                overallWidth.innerHTML = attributes?.overall_width;
+                standardGVWR.innerHTML = attributes?.standard_gvwr;
+                highwayMileage.innerHTML = attributes?.highway_mileage;
+                cityMileage.innerHTML = attributes?.city_mileage;
+                turningDiameter.innerHTML = attributes?.turning_diameter;
+                frontSuspension.innerHTML = attributes?.front_suspension;
+                rearSuspension.innerHTML = attributes?.rear_suspension;
+                frontSpringType.innerHTML = attributes?.front_spring_type;
+                rearSpringType.innerHTML = attributes?.rear_spring_type;
+                tyres.innerHTML = attributes?.tires;
+                frontBrakeType.innerHTML = attributes?.front_brake_type;
+                rearBrakeType.innerHTML = attributes?.rear_brake_type;
+                drivetrain.innerHTML = attributes?.drivetrain;
+
+
+                invoicePrice.innerHTML = attributes?.invoice_price;
+                deliveryCharges.innerHTML = attributes?.delivery_charges;
+                manufacturerSuggestedRetailPrice.innerHTML = attributes?.manufacturer_suggested_retail_price;
+                productionSeqNumber.innerHTML = attributes?.production_seq_number;
+
+                const [basic, powertrain, rust] = report?.warranties;
+
+                warrantiesBasic.innerHTML = basic.miles + " - " + basic.months;
+                warrantiesPowertrain.innerHTML = powertrain.miles + " - " + powertrain.months;
+                warrantiesRust.innerHTML = rust.miles + " - " + rust.months;
+
+
+
+            </script>
+    </footer>
+
+</body>
+
+</html>
