@@ -77,6 +77,30 @@ app.post("/create-payment-intent", async (req, res) => {
   });
 });
 
+app.post("/fetch-history-report", async (req, res) => {
+  const { vin } = req.body;
+
+  const key = config.get("apiKEY");
+  console.log("dasd");
+
+  if (vin) {
+    const vehicleSpecs = await axios
+      .get(`http://api.carsxe.com/history?key=${key}&vin=${vin}`)
+      .then((response) => response?.data)
+      .catch((err) => err?.response?.data);
+
+    if (vehicleSpecs.error === null) {
+      return res.status(400).send({ msg: "Invalid VIN Number" });
+    } else {
+      return res.status(200).send(vehicleSpecs);
+    }
+  } else {
+    return res
+      .status(400)
+      .send({ msg: "Something went wrong. Try again later !" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}/`);
 });

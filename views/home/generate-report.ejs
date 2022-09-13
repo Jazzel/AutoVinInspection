@@ -263,11 +263,61 @@
                     <div class="history">
                         <div class=" card shadow mt-3">
                             <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">Vehicle History</h2>
+                                <h2 class="styled-font">History Information</h2>
+                            </div>
+                            <div class="card-body" id="history-container">
+
+                            </div>
+                        </div>
+                        <div class=" card shadow mt-3">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font">Junk & Salvage Information</h2>
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title">Title</h4>
-                                <p class="card-text">Text</p>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-center" id="vehicleIdentification2">Reporting Entity
+                                            Abstract -
+                                        </h4>
+                                    </div>
+                                    <div class="card-footer" id="junk-container">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow mt-3">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font">Current Title Information</h2>
+                            </div>
+                            <div class="card-body" id="current-title-container">
+                                <h4 class="card-title text-center" id="vehicleIdentification">VehicleIdentification -
+                                </h4>
+
+                            </div>
+                        </div>
+                        <div class="card shadow mt-3">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font">Brands Information</h2>
+                            </div>
+                            <div class="card-body" id="brands-container">
+
+                            </div>
+                        </div>
+                        <div class="card shadow mt-3">
+                            <div class="card-header bg-dark text-light text-center p-3">
+                                <h2 class="styled-font">Insurance Information</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body pt-4" id="insurance-container">
+
+
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -313,6 +363,8 @@
             </script>
             <script>
 
+
+
                 function makeid(length) {
                     var result = '';
                     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -328,6 +380,208 @@
                 const data = localStorage.getItem("report");
 
                 const report = JSON.parse(data);
+
+
+                const getHistory = async function () {
+                    const response = await fetch("/fetch-history-report", {
+                        method: "POST",
+
+                        body: JSON.stringify({ vin: report.vinNumber }),
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    }).then((res) => res.json());
+
+                    localStorage.setItem("history", JSON.stringify(response));
+                    return response;
+                }
+
+
+                const loadHistoryData = function () {
+                    const history = JSON.parse(localStorage.getItem("history"));
+                    // console.log(history)
+
+                    const { brandsInformation, insuranceInformation, currentTitleInformation, junkAndSalvageInformation, historyInformation } = history;
+
+                    brandsInformation.forEach(({ name, code, description }) => {
+                        const brandsContainer = document.getElementById("brands-container");
+
+                        const card = `<div class="card shadow mt-3"> 
+                                    <div class="card-body"> 
+                                        <h4 class="card-title text-center">Name: ${name} - Code: ${code}</h4>
+                                    </div>
+                                    <div class="card-footer pt-4">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <h5>Description</h5>
+                                                <p>${description}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                        brandsContainer.innerHTML += card;
+                    });
+
+
+                    insuranceInformation.forEach(({ ReportingEntityAbstract, VehicleObtainedDate, VehicleDispositionText }) => {
+                        const insuranceContainer = document.getElementById("insurance-container");
+
+                        const card = ` <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">Vehicle Disposition - ${VehicleDispositionText}</h4>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Entity Name: </h5>
+                                                        <p id="insurance-entity-name">${ReportingEntityAbstract?.EntityName}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>City: </h5>
+                                                        <p id="insurance-city">${ReportingEntityAbstract?.LocationCityName}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Contact Email: </h5>
+                                                        <p id="insurance-contact-email">${ReportingEntityAbstract?.ContactEmailID}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Telephone Number: </h5>
+                                                        <p id="insurance-telephone-number">${ReportingEntityAbstract?.TelephoneNumberFullID}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Identification ID: </h5>
+                                                        <p id="insurance-identification-id">${ReportingEntityAbstract?.IdentificationID}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Location State US Postal Service Code: </h5>
+                                                        <p id="insurance-location-state-us-postal-service-code">${ReportingEntityAbstract?.LocationStateUSPostalServiceCode}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Vehicle Obtained Date: </h5>
+                                                        <p id="insurance-vehicle-obtained-date">${new Date(VehicleObtainedDate).toDateString()}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                        insuranceContainer.innerHTML += card;
+
+                    })
+
+                    // console.log(currentTitleInformation)
+                    currentTitleInformation.forEach(({ HistoricTitleAbstract }) => {
+                        HistoricTitleAbstract?.forEach(({ TitleIssuingAuthorityName, VehicleOdometerReadingUnitCode, VehicleOdometerReadingMeasure, TitleIssueDate }) => {
+                            const currentTitleContainer = document.getElementById("current-title-container");
+
+
+                            const card = `<div class="card mt-3">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-center">Historic Title Abstract</h4>
+                                    </div>
+                                    <div class="card-footer pt-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <h5>Title Issuing Authority Name:</h5>
+                                                <p>${TitleIssuingAuthorityName}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Title Issue Date:</h5>
+                                                <p>${new Date(TitleIssueDate).toDateString()}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Vehicle Odometer Reading Measure:</h5>
+                                                <p>${VehicleOdometerReadingMeasure}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Vehicle Odometer Reading Unit Code:</h5>
+                                                <p>${VehicleOdometerReadingUnitCode}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                            currentTitleContainer.innerHTML += card;
+                        })
+
+
+
+                    })
+
+                    junkAndSalvageInformation.forEach(({ ReportingEntityAbstract, VehicleObtainedDate, VehicleDispositionText }) => {
+                        const junkContainer = document.getElementById("junk-container");
+
+                        const { EntityName, LocationStateUSPostalServiceCode, ReportingEntityCategoryText, TelephoneNumberFullID, LocationCityName } = ReportingEntityAbstract
+                        const card = ` <div class="card mt-3">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">VehicleDispositionText - ${VehicleDispositionText}</h4>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Entity Name:</h5>
+                                                        <p>${EntityName}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Location State US Postal Service Code: </h5>
+                                                        <p>${LocationStateUSPostalServiceCode}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Telephone Number Full ID: </h5>
+                                                        <p>${TelephoneNumberFullID}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Location City Name: </h5>
+                                                        <p>${LocationCityName}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Reporting Entity Category Text: </h5>
+                                                        <p>${ReportingEntityCategoryText}</p>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <h5>Vehicle Obtained Date: </h5>
+                                                        <p>${new Date(VehicleObtainedDate).toDateString()}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`;
+
+                        junkContainer.innerHTML += card;
+                    });
+
+
+                    historyInformation.forEach(({ VehicleIdentification, VehicleOdometerReadingUnitCode, VehicleOdometerReadingMeasure, TitleIssuingAuthorityName, TitleIssueDate }) => {
+                        const historyContainer = document.getElementById("history-container");
+
+                        const card = ` <div class="card mt-3">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-center">Identification ID: ${VehicleIdentification?.IdentificationID}</h4>
+                                    </div>
+                                    <div class="card-footer pt-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <h5>Title Issuing Authority Name: </h5>
+                                                <p>${TitleIssuingAuthorityName}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Vehicle Odometer Reading Measure: </h5>
+                                                <p>${VehicleOdometerReadingMeasure}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Vehicle Odometer Reading Unit Code: </h5>
+                                                <p>${VehicleOdometerReadingUnitCode}</p>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Title Issue Date: </h5>
+                                                <p>${new Date(TitleIssueDate?.Date).toDateString()}</p>   
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>`;
+                        historyContainer.innerHTML += card;
+                    })
+                }
+
 
                 const specs = document.querySelector(".specs");
                 const history = document.querySelector(".history");
@@ -352,6 +606,11 @@
                     document.getElementById("insuranceType").innerHTML = "Vehicle Insurance & History";
                 }
 
+                if (report.insuranceType === "both" || report.insuranceType === "history") {
+                    // const historyData = getHistory();
+                    loadHistoryData();
+                }
+
                 // if (data.re)
 
                 const username = document.getElementById("username");
@@ -361,6 +620,8 @@
                 const vin = document.getElementById("vin");
                 const reportID = document.getElementById("reportID");
                 const dateGenerated = document.getElementById("reportDate");
+                const vehicleIdentification = document.getElementById("vehicleIdentification");
+                const vehicleIdentification2 = document.getElementById("vehicleIdentification2");
 
 
                 const vname = document.getElementById("vname");
@@ -414,6 +675,8 @@
 
 
                 username.innerHTML = report.name;
+                vehicleIdentification.innerHTML += report.vinNumber;
+                vehicleIdentification2.innerHTML += report.vinNumber;
                 email.innerHTML = report.email;
                 reportType.innerHTML = report.insuranceType === "information" ? "Vehicle Information History" : report.insuranceType === "history" ? "Vehicle History Specification" : "Vehicle Information + History";
 
@@ -422,7 +685,7 @@
 
                 reportID.innerHTML = makeid(7);
                 dateGenerated.innerHTML = new Date().toDateString();
-                console.log(Object.keys(report))
+                // console.log(Object.keys(report))
 
                 const attributes = report?.attributes;
 

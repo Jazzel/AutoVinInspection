@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group mt-2">
                     <label for="insurancePrice">Insurance Price</label>
-                    <select class="form-control" name="insurancePrice" id="insurancePrice">
+                    <select class="form-control" name="insurancePrice" disabled id="insurancePrice">
                         <option value="select">Select insurance price</option>
                         <option value="25">25$</option>
                         <option value="50">50$</option>
@@ -90,6 +90,8 @@
         <%- include('../partials/footer'); %>
             <script>
 
+
+
                 const form = document.querySelector('.form');
 
                 const name = document.querySelector('#name');
@@ -97,6 +99,18 @@
                 const vinNumber = document.querySelector('#vinNumber');
                 const insuranceType = document.querySelector('#insuranceType');
                 const insurancePrice = document.querySelector('#insurancePrice');
+
+                insuranceType.addEventListener("change", function () {
+                    if (insuranceType.value === "information") {
+                        insurancePrice.value = "25"
+                    }
+                    else if (insuranceType.value === "history") {
+                        insurancePrice.value = "50"
+                    }
+                    else if (insuranceType.value === "both") {
+                        insurancePrice.value = "75"
+                    }
+                })
 
 
                 const checkInputs = function () {
