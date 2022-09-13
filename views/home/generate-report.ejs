@@ -383,16 +383,20 @@
 
 
                 const getHistory = async function () {
-                    const response = await fetch("/fetch-history-report", {
-                        method: "POST",
+                    if (!localStorage.getItem("history")) {
 
-                        body: JSON.stringify({ vin: report.vinNumber }),
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8"
-                        }
-                    }).then((res) => res.json());
+                        const response = await fetch("/fetch-history-report", {
+                            method: "POST",
 
-                    localStorage.setItem("history", JSON.stringify(response));
+                            body: JSON.stringify({ vin: report.vinNumber }),
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8"
+                            }
+                        }).then((res) => res.json());
+
+                        localStorage.setItem("history", JSON.stringify(response));
+                    }
+
                     loadHistoryData();
                     console.log("data loaded")
                     return response;
