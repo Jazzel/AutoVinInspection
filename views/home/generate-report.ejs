@@ -393,6 +393,8 @@
                     }).then((res) => res.json());
 
                     localStorage.setItem("history", JSON.stringify(response));
+                    loadHistoryData();
+                    console.log("data loaded")
                     return response;
                 }
 
@@ -401,7 +403,7 @@
                     const history = JSON.parse(localStorage.getItem("history"));
                     // console.log(history)
 
-                    const { brandsInformation, insuranceInformation, currentTitleInformation, junkAndSalvageInformation, historyInformation } = history;
+                    const { brandsInformation, insuranceInformation, currentTitleInformation, junkAndSalvageInformation, historyInformation } = history || {};
 
                     brandsInformation.forEach(({ name, code, description }) => {
                         const brandsContainer = document.getElementById("brands-container");
@@ -607,8 +609,8 @@
                 }
 
                 if (report.insuranceType === "both" || report.insuranceType === "history") {
-                    // const historyData = getHistory();
-                    loadHistoryData();
+                    const historyData = getHistory();
+
                 }
 
                 // if (data.re)
