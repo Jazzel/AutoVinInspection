@@ -383,9 +383,9 @@
 
 
                 const getHistory = async function () {
+                    let response;
                     if (!localStorage.getItem("history")) {
-
-                        const response = await fetch("/fetch-history-report", {
+                        response = await fetch("/fetch-history-report", {
                             method: "POST",
 
                             body: JSON.stringify({ vin: report.vinNumber }),
