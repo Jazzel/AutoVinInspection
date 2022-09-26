@@ -46,35 +46,37 @@
                         placeholder="Email">
                     <small id="helpId" class="form-text text-muted">Enter a valid email address</small>
                 </div>
+
                 <div class="form-group mt-2">
-                    <label for="vin-number">Vehicle Identification Number</label>
-                    <input type="text" min="10" class="form-control" name="vinNumber" value="5NPDH4AE2CH063670"
-                        id="vinNumber" aria-describedby="vinNumber" placeholder="VI number">
-                    <small id="helpId" class="form-text text-muted">Enter a valid VI number</small>
-                </div>
-                <div class="form-group mt-2">
-                    <label for="insuranceType">Vehicle Identification Number</label>
+                    <label for="insuranceType">Number of reports</label>
                     <select class="form-control" name="insuranceType" id="insuranceType">
-                        <option value="select">Select insurance type</option>
-                        <option value="information">Vehicle Information History</option>
-                        <option value="history">Vehicle History Specification</option>
-                        <option value="both">Vehicle Information + History</option>
+                        <option value="select">Select number of reports</option>
+                        <option value="one">One</option>
+                        <option value="two">Two</option>
+                        <option value="five">Five</option>
                     </select>
-                    <small id="helpId" class="form-text text-muted">Select the type of report you want to
+                    <small id="helpId" class="form-text text-muted">Select the number of reports you want to
                         generate</small>
 
                 </div>
                 <div class="form-group mt-2">
                     <label for="insurancePrice">Insurance Price</label>
-                    <select class="form-control" name="insurancePrice" disabled id="insurancePrice">
+                    <select class="form-control" name="insurancePrice" id="insurancePrice">
                         <option value="select">Select insurance price</option>
-                        <option value="25">25$</option>
-                        <option value="50">50$</option>
-                        <option value="75">75$</option>
+                        <option value="28.95">28.95$</option>
+                        <option value="38.95">38.95$</option>
+                        <option value="64.95">64.95$</option>
                     </select>
                     <small id="helpId" class="form-text text-muted">You can see the comparision on the reports
                         page.</small>
 
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="vin-number">Vehicle Identification Number</label>
+                    <input type="text" min="10" class="form-control" name="vinNumber" value="5NPDH4AE2CH063670"
+                        id="vinNumber" aria-describedby="vinNumber" placeholder="VI number">
+                    <small id="vinNumbersInput" class="form-text text-muted">Enter a valid VI number</small>
                 </div>
 
                 <button type="submit" class="btn btn-dark mt-3 w-100">Submit</button>
@@ -91,26 +93,70 @@
             <script>
 
 
+                localStorage.removeItem("user");
+                localStorage.removeItem("payment");
+                localStorage.removeItem("report-0");
+                localStorage.removeItem("report-1");
+                localStorage.removeItem("report-2");
+                localStorage.removeItem("report-3");
+                localStorage.removeItem("report-4");
+                localStorage.removeItem("history-0");
+                localStorage.removeItem("history-1");
+                localStorage.removeItem("history-2");
+                localStorage.removeItem("history-3");
+                localStorage.removeItem("history-4");
+                localStorage.removeItem("report-loaded");
+                localStorage.removeItem("number-of-reports");
 
                 const form = document.querySelector('.form');
-
                 const name = document.querySelector('#name');
                 const email = document.querySelector('#email');
                 const vinNumber = document.querySelector('#vinNumber');
                 const insuranceType = document.querySelector('#insuranceType');
                 const insurancePrice = document.querySelector('#insurancePrice');
 
+                const vinNumbersInputMSG = document.querySelector('#vinNumbersInput');
+
+                let selectedReports = "";
+
                 insuranceType.addEventListener("change", function () {
-                    if (insuranceType.value === "information") {
-                        insurancePrice.value = "25"
+                    if (insuranceType.value === "one") {
+                        insurancePrice.value = "28.95"
+                        vinNumbersInputMSG.innerHTML = "Please enter 1 valid VI number. (No symbols must be used)";
+                        selectedReports = "one";
+
                     }
-                    else if (insuranceType.value === "history") {
-                        insurancePrice.value = "50"
+                    else if (insuranceType.value === "two") {
+                        insurancePrice.value = "38.95"
+                        vinNumbersInputMSG.innerHTML = "Please enter 2 valid VI numbers. (Comma seperated)";
+                        selectedReports = "two";
+
                     }
-                    else if (insuranceType.value === "both") {
-                        insurancePrice.value = "75"
+                    else if (insuranceType.value === "five") {
+                        insurancePrice.value = "64.95"
+                        vinNumbersInputMSG.innerHTML = "Please enter 5 valid VI numbers. (Comma seperated)";
+                        selectedReports = "five";
+
                     }
                 })
+
+                insurancePrice.addEventListener("change", function () {
+
+                    if (insurancePrice.value === "28.95") {
+                        vinNumbersInputMSG.innerHTML = "Please enter 1 valid VI number. (No symbols must be used)";
+                    }
+                    else if (insurancePrice.value === "38.95") {
+                        vinNumbersInputMSG.innerHTML = "Please enter 2 valid VI numbers. (Comma seperated)";
+                    }
+                    else if (insurancePrice.value === "64.95") {
+                        vinNumbersInputMSG.innerHTML = "Please enter 5 valid VI numbers. (Comma seperated)";
+
+                    }
+                    else {
+                        vinNumbersInputMSG.innerHTML = "Enter a valid VI number";
+                    }
+                })
+
 
 
                 const checkInputs = function () {
@@ -152,6 +198,22 @@
                         insurancePrice.style.border = "1px solid #ced4da";
                     }
 
+                    if (insurancePrice.value === "28.95" && vinNumber.value.length === 0) {
+                        vinNumber.style.border = "1px solid red";
+                        validation = true;
+                    }
+                    else if (insurancePrice.value === "38.95" && vinNumber.value.length !== 0 && vinNumber.value.split(",").length !== 2) {
+                        vinNumber.style.border = "1px solid red";
+                        validation = true;
+                    }
+                    else if (insurancePrice.value === "64.95" && vinNumber.value.length !== 0 && vinNumber.value.split(",").length !== 5) {
+                        vinNumber.style.border = "1px solid red";
+                        validation = true;
+                    }
+                    else {
+                        vinNumber.style.border = "1px solid #ced4da";
+                    }
+
                     return validation;
                 }
 
@@ -172,42 +234,65 @@
                         showAlert("Please fill in all fields");
                     }
                     else {
-                        const data = {
-                            name: name.value,
-                            email: email.value,
-                            vinNumber: vinNumber.value,
-                            insuranceType: insuranceType.value,
-                            insurancePrice: insurancePrice.value
-                        }
+                        const vinNumbers = vinNumber.value.split(",")
+                        console.log(vinNumbers);
 
-                        console.log(data);
+                        check = true;
 
-                        const response = await fetch("/fetch-report", {
-                            method: "POST",
+                        for (let i = 0; i < vinNumbers.length; i++) {
 
-                            body: JSON.stringify(data),
-                            headers: {
-                                "Content-type": "application/json; charset=UTF-8"
+                            const data = {
+                                name: name.value,
+                                email: email.value,
+                                vinNumber: vinNumbers[i],
+                                insuranceType: insuranceType.value,
+                                insurancePrice: insurancePrice.value
                             }
-                        }).then((res) => res.json());
 
-                        if (response?.msg === "Invalid VIN Number") {
-                            showAlert("Invalid VIN Number")
-                            localStorage.setItem("report-loaded", false);
+                            localStorage.setItem("user", JSON.stringify({
+                                name: name.value,
+                                email: email.value,
+                                number_of_reports: vinNumbers.length,
+                                insurance_price: insurancePrice.value,
+                                vin_numbers: vinNumbers
+                            }))
+
+                            const response = await fetch("/fetch-report", {
+                                method: "POST",
+
+                                body: JSON.stringify(data),
+                                headers: {
+                                    "Content-type": "application/json; charset=UTF-8"
+                                }
+                            }).then((res) => res.json());
+
+
+
+                            if (response?.msg === "Invalid VIN Number") {
+                                showAlert("Invalid VIN Number")
+                                check = false;
+                                localStorage.setItem("report-loaded", false);
+
+                            }
+                            else {
+
+                                const _response = {
+                                    ...response,
+                                    ...data,
+                                }
+                                localStorage.setItem(`report-${i}`, JSON.stringify(_response));
+                                localStorage.setItem("report-loaded", true);
+                                localStorage.setItem("number-of-reports", vinNumbers.length);
+                            }
+
+
+                            // form.submit();
 
                         }
-                        else {
-
-                            const _response = {
-                                ...response,
-                                ...data,
-                            }
-                            localStorage.setItem("report", JSON.stringify(_response));
-                            localStorage.setItem("report-loaded", true);
+                        if (check) {
                             window.location.href = "/report";
                         }
 
-                        // form.submit();
                     }
 
                 })
