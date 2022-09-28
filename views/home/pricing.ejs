@@ -30,12 +30,84 @@
 
     <main class="container pb-5 mb-5">
         <h1>Pricing</h1>
+
+        <div class="card shadow mt-5">
+            <div class="card-body p-5">
+                <h4 class="card-title">Standard Package - 28.95 $ <small class="text-secondary h5">/ 1 VINS</small>
+                </h4>
+                <p class="card-text">
+                <ul class="mt-4 text-left">
+                    <li>One Vehicle Report</li>
+                    <li>Vehicle Specifications</li>
+                    <li>Cost & Warranties Information</li>
+                    <li>History Information</li>
+                    <li>Junk & Salvage Information</li>
+                    <li>Current Title Information</li>
+                    <li>Brands Information</li>
+                    <li>Insurance Information</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card shadow mt-5">
+            <div class="card-body p-5">
+                <h4 class="card-title">Silver Package - 38.95 $ <small class="text-secondary h5">/ 1 VINS</small>
+                </h4>
+                <p class="card-text">
+                <ul class="mt-4 text-left">
+                    <li>Two Vehicle Report</li>
+                    <li>Vehicle Specifications</li>
+                    <li>Cost & Warranties Information</li>
+                    <li>History Information</li>
+                    <li>Junk & Salvage Information</li>
+                    <li>Current Title Information</li>
+                    <li>Brands Information</li>
+                    <li>Insurance Information</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card shadow mt-5">
+            <div class="card-body p-5">
+                <h4 class="card-title">Gold Package - 64.95 $ <small class="text-secondary h5">/ 1 VINS</small>
+                </h4>
+                <p class="card-text">
+                <ul class="mt-4 text-left">
+                    <li>Five Vehicle Report</li>
+                    <li>Vehicle Specifications</li>
+                    <li>Cost & Warranties Information</li>
+                    <li>History Information</li>
+                    <li>Junk & Salvage Information</li>
+                    <li>Current Title Information</li>
+                    <li>Brands Information</li>
+                    <li>Insurance Information</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow mt-5">
+            <div class="card-body p-5">
+                <h4 class="card-title">Download sample report
+                </h4>
+                <br />
+                <p class="card-text">
+                    <button class="btn btn-dark w-100" onclick="downloadReport()">Download Sample Report</button>
+                </p>
+            </div>
+        </div>
     </main>
 
 
     <footer>
         <%- include('../partials/footer'); %>
     </footer>
+
+    <script>
+        function downloadReport() {
+            window.open('https://www.dropbox.com/s/zdrl3lv70crg7rf/Generated-report.pdf?dl=0');
+        }
+    </script>
 
 </body>
 
