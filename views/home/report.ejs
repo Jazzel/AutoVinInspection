@@ -108,7 +108,7 @@
                 // This is a public sample test API key.
                 // Don’t submit any personally identifiable information in requests made with this key.
                 // Sign in to see your own test API key embedded in code samples.
-                const stripe = Stripe("pk_test_oCAxK0CcUTHFsfOEu531pLYK00rYFcE5uu");
+                const stripe = Stripe("pk_test_51LoAYVIElGq6Begsytcon4bQQRvJsrdreaxIVwvsG9nqI89BOX4yw7uM2zjF0yJSyZelnBn1mVld8VN3LZbO6Cok00fR9I0367");
 
 
                 // The items the customer wants to buy
@@ -128,7 +128,7 @@
                     const response = await fetch("/create-payment-intent", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ username: report.name, email: report.email, reportType: report.insuranceType, reportPrice: report.insurancePrice, vin: report.vinNumber }),
+                        body: JSON.stringify({ username: report.name, email: report.email, reportType: report.number_of_reports, reportPrice: report.insurance_price, vin: report.vin_numbers.toString() }),
                     });
                     const { clientSecret } = await response.json();
 

@@ -8,7 +8,9 @@ const PORT = process.env.PORT || 3200;
 const config = require("config");
 
 const axios = require("axios").default;
-const stripe = require("stripe")("sk_test_8SOdjDCD0QJmzrT1dC77rNhO00RUbDsJAX");
+const stripe = require("stripe")(
+  "sk_test_51LoAYVIElGq6BegsdpFcjYt2We338w2hY9GUoQcowpW4ANNS2KHfLSeyW4tR0c26JssJvZxuyW2iIDPBL3C7uTO40088qDudKZ"
+);
 const data = {};
 
 app.use(express.json());
