@@ -24,12 +24,12 @@
     </div>
 
     <main class="container pb-5 mb-5">
-        <div class="w-50 m-auto">
+        <div class=" m-auto">
 
             <h1>Login</h1>
             <br />
 
-            <form class="form" method="post">
+            <form class="form m-0 p-0 w-100" method="post">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group mt-2">
                     <label for="insurancePrice">Insurance Price</label>
-                    <select class="form-control" name="insurancePrice" id="insurancePrice">
+                    <select class="form-control" disabled name="insurancePrice" id="insurancePrice">
                         <option value="select">Select insurance price</option>
                         <option value="28.95">28.95$</option>
                         <option value="38.95">38.95$</option>
@@ -70,8 +70,8 @@
 
                 <div class="form-group mt-2">
                     <label for="vin-number">Vehicle Identification Number</label>
-                    <input type="text" min="10" class="form-control" name="vinNumber" value="5NPDH4AE2CH063670"
-                        id="vinNumber" aria-describedby="vinNumber" placeholder="VI number">
+                    <input type="text" min="10" class="form-control" name="vinNumber" id="vinNumber"
+                        aria-describedby="vinNumber" placeholder="VI number">
                     <small id="vinNumbersInput" class="form-text text-muted">Enter a valid VI number</small>
                 </div>
 
