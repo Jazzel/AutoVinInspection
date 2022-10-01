@@ -24,15 +24,15 @@
     </div>
 
 
-    <main class="container pb-5 mb-5" id="pdf">
-        <div class="container">
+    <main class="container-fluid pb-5 mb-5" id="pdf">
+        <div class="container-fluid">
             <div class="card shadow-lg">
                 <div class="card-header bg-dark text-light text-center p-3">
                     <h1 id="vin">Generated Report </h1>
                     <h2 id="insuranceType"></h2>
                 </div>
                 <div class="card-body">
-                    <button id="generate-pdf">PDF</button>
+                    <button id="generate-pdf">Download PDF</button>
 
                     <p class="card-text">
                     <div class="row" id="user-data">
@@ -43,262 +43,7 @@
 
 
 
-                    <!-- <div class="specs">
-                        <div class="card shadow">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font" id="vname">Basic Details - </h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <h5>Vin</h5>
-                                        <p id="vin2"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Year: </h5>
-                                        <p id="year"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Make: </h5>
-                                        <p id="make"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Model: </h5>
-                                        <p id="model"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Style</h5>
-                                        <p id="style"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Made In: </h5>
-                                        <p id="madeIn"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Made In: </h5>
-                                        <p id="trim"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Engine:</h5>
-                                        <p id="engine"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Transmission: </h5>
-                                        <p id="transmission"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Cylinders: </h5>
-                                        <p id="cylinders"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Wheel drive: </h5>
-                                        <p id="wheelDrive"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Steering Type: </h5>
-                                        <p id="steeringType"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Fuel type: </h5>
-                                        <p id="fuelType"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Tank Size: </h5>
-                                        <p id="tankSize"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Clearance: </h5>
-                                        <p id="clearance"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Tires: </h5>
-                                        <p id="tires"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Anti Brake System: </h5>
-                                        <p id="antiBrakeSystem"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Anti-theft system: </h5>
-                                        <p id="antiTheftSystem"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Standard Seating: </h5>
-                                        <p id="standardSeating"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Optional Seating: </h5>
-                                        <p id="optionalSeating"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Overall Height: </h5>
-                                        <p id="overallHeight"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Overall Length: </h5>
-                                        <p id="overallLength"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Overall Width: </h5>
-                                        <p id="overallWidth"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Standard GVWR: </h5>
-                                        <p id="standardGVWR"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Highway Mileage: </h5>
-                                        <p id="highwayMileage"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>City Mileage: </h5>
-                                        <p id="cityMileage"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Drivetrain: </h5>
-                                        <p id="drivetrain"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Front brake type: </h5>
-                                        <p id="frontBrakeType"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Rear brake type: </h5>
-                                        <p id="rearBrakeType"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Turning diameter: </h5>
-                                        <p id="turningDiameter"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Front suspension: </h5>
-                                        <p id="frontSuspension"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Rear suspension: </h5>
-                                        <p id="rearSuspension"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Front spring type: </h5>
-                                        <p id="frontSpringType"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Rear spring type: </h5>
-                                        <p id="rearSpringType"></p>
-                                    </div>
-                                </div>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card shadow">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font" id="vname">Cost & Warranties</h2>
 
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <h5>Invoice price:</h5>
-                                        <p id="invoicePrice"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Delivery charges: </h5>
-                                        <p id="deliveryCharges"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Manufacturer suggested retail price:</h5>
-                                        <p id="manufacturerSuggestedRetailPrice"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Production seq number:</h5>
-                                        <p id="productionSeqNumber"></p>
-                                    </div>
-
-                                    <div class="col-12 col-md-6">
-                                        <h5>Warranties: Basic</h5>
-                                        <p id="warrantiesBasic"></p>
-                                    </div>
-
-                                    <div class="col-12 col-md-6">
-                                        <h5>Warranties: Powertrain</h5>
-                                        <p id="warrantiesPowertrain"></p>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <h5>Warranties: Rust</h5>
-                                        <p id="warrantiesRust"></p>
-                                    </div>
-
-                                </div>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="history">
-                        <div class=" card shadow mt-3">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">History Information</h2>
-                            </div>
-                            <div class="card-body" id="history-container">
-
-                            </div>
-                        </div>
-                        <div class=" card shadow mt-3">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">Junk & Salvage Information</h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title text-center" id="vehicleIdentification2">Reporting
-                                            Entity
-                                            Abstract -
-                                        </h4>
-                                    </div>
-                                    <div class="card-footer" id="junk-container">
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow mt-3">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">Current Title Information</h2>
-                            </div>
-                            <div class="card-body" id="current-title-container">
-                                <h4 class="card-title text-center" id="vehicleIdentification">VehicleIdentification
-                                    -
-                                </h4>
-
-                            </div>
-                        </div>
-                        <div class="card shadow mt-3">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">Brands Information</h2>
-                            </div>
-                            <div class="card-body" id="brands-container">
-
-                            </div>
-                        </div>
-                        <div class="card shadow mt-3">
-                            <div class="card-header bg-dark text-light text-center p-3">
-                                <h2 class="styled-font">Insurance Information</h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="card">
-                                    <div class="card-body pt-4" id="insurance-container">
-
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -346,7 +91,7 @@
 
                 Object.entries(user).forEach(([key, value]) => {
 
-                    const element = ` <div class="col-12 col-md-6">
+                    const element = ` <div class="col-6 col-md-6">
                             <h5>${fixStrings(key)}</h5>
                             <p >${value}</p>
                         </div>`
@@ -377,9 +122,6 @@
                     for (let index = 0; index < numberOfReports; index++) {
 
                         let id = makeid(10);
-
-
-
                         const reportData = localStorage.getItem(`report-${index}`);
                         const report = JSON.parse(reportData);
 
@@ -391,7 +133,7 @@
 
                         Object.entries(equipment).forEach(([key, value]) => {
 
-                            const element = ` <div class="col-12 col-md-6">
+                            const element = ` <div class="col-6 col-md-6">
                             <h5>${fixStrings(key)}</h5>
                             <p >${value}</p>
                         </div>`
@@ -414,7 +156,7 @@
 
                         Object.entries(attributes).forEach(([key, value]) => {
 
-                            const element = ` <div class="col-12 col-md-6">
+                            const element = ` <div class="col-6 col-md-6">
                             <h5>${fixStrings(key)}</h5>
                             <p >${value}</p>
                         </div>`
@@ -442,7 +184,7 @@
 
                             Object.entries(value).forEach(([key, value]) => {
 
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                             <h5>${fixStrings(key)}</h5>
                             <p >${value}</p>
                             </div>`;
@@ -482,7 +224,7 @@
                             let brandsInformationSubElements = ``;
 
                             Object.entries(value).forEach(([key, value]) => {
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                                 <h5>${fixStrings(key)}</h5>
                                 <p >${value}</p>
                                 </div>`;
@@ -518,7 +260,7 @@
                             let currentTitleInformationSubElements = ``;
 
                             Object.entries(value).forEach(([key, value]) => {
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                                 <h5>${fixStrings(key)}</h5>
                                 <p >${value}</p>
                                 </div>`;
@@ -555,7 +297,7 @@
                             let junkAndSalvageInformationSubElements = ``;
 
                             Object.entries(value).forEach(([key, value]) => {
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                                 <h5>${fixStrings(key)}</h5>
                                 <p >${value}</p>
                                 </div>`;
@@ -592,7 +334,7 @@
                             let historyInformationSubElements = ``;
 
                             Object.entries(value).forEach(([key, value]) => {
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                                 <h5>${fixStrings(key)}</h5>
                                 <p >${value}</p>
                                 </div>`;
@@ -628,7 +370,7 @@
                             let insuranceInformationSubElements = ``;
 
                             Object.entries(value).forEach(([key, value]) => {
-                                const element = ` <div class="col-12 col-md-6">
+                                const element = ` <div class="col-6 col-md-6">
                                     <h5>${fixStrings(key)}</h5>
                                     <p >${value}</p>
                                     </div>`;
@@ -674,7 +416,9 @@
                         informationContainer.innerHTML += accordian;
 
                     }
+                    printFile();
 
+                    return true;
                 }
 
 
@@ -683,10 +427,14 @@
 
                 // const report = JSON.parse(data);
 
+                const printFile = () => {
+                    alert("It takes around 1-2 minutes to save a file. Please wait and then open from where you saved the file.");
+                    window.print()
+                }
 
                 const getHistory = async function () {
                     let response;
-                    if (!localStorage.getItem("history-loaded")) {
+                    if (!localStorage.getItem("history-loader")) {
 
                         for (let index = 0; index < numberOfReports; index++) {
 
@@ -702,7 +450,6 @@
                             localStorage.setItem(`history-${index}`, JSON.stringify(response));
 
                         }
-
                         localStorage.setItem("history-loader", true);
                     }
 
@@ -729,7 +476,7 @@
                 //                     </div>
                 //                     <div class="card-footer pt-4">
                 //                         <div class="row">
-                //                             <div class="col-12 ">
+                //                             <div class="col-6 ">
                 //                                 <h5>Description</h5>
                 //                                 <p>${description}</p>
                 //                             </div>
@@ -749,31 +496,31 @@
                 //                             </div>
                 //                             <div class="card-footer">
                 //                                 <div class="row">
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Entity Name: </h5>
                 //                                         <p id="insurance-entity-name">${ReportingEntityAbstract?.EntityName}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>City: </h5>
                 //                                         <p id="insurance-city">${ReportingEntityAbstract?.LocationCityName}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Contact Email: </h5>
                 //                                         <p id="insurance-contact-email">${ReportingEntityAbstract?.ContactEmailID}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Telephone Number: </h5>
                 //                                         <p id="insurance-telephone-number">${ReportingEntityAbstract?.TelephoneNumberFullID}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Identification ID: </h5>
                 //                                         <p id="insurance-identification-id">${ReportingEntityAbstract?.IdentificationID}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Location State US Postal Service Code: </h5>
                 //                                         <p id="insurance-location-state-us-postal-service-code">${ReportingEntityAbstract?.LocationStateUSPostalServiceCode}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Vehicle Obtained Date: </h5>
                 //                                         <p id="insurance-vehicle-obtained-date">${new Date(VehicleObtainedDate).toDateString()}</p>
                 //                                     </div>
@@ -796,19 +543,19 @@
                 //                     </div>
                 //                     <div class="card-footer pt-4">
                 //                         <div class="row">
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Title Issuing Authority Name:</h5>
                 //                                 <p>${TitleIssuingAuthorityName}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Title Issue Date:</h5>
                 //                                 <p>${new Date(TitleIssueDate).toDateString()}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Vehicle Odometer Reading Measure:</h5>
                 //                                 <p>${VehicleOdometerReadingMeasure}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Vehicle Odometer Reading Unit Code:</h5>
                 //                                 <p>${VehicleOdometerReadingUnitCode}</p>
                 //                             </div>
@@ -834,27 +581,27 @@
                 //                             </div>
                 //                             <div class="card-footer">
                 //                                 <div class="row">
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Entity Name:</h5>
                 //                                         <p>${EntityName}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Location State US Postal Service Code: </h5>
                 //                                         <p>${LocationStateUSPostalServiceCode}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Telephone Number Full ID: </h5>
                 //                                         <p>${TelephoneNumberFullID}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Location City Name: </h5>
                 //                                         <p>${LocationCityName}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Reporting Entity Category Text: </h5>
                 //                                         <p>${ReportingEntityCategoryText}</p>
                 //                                     </div>
-                //                                     <div class="col-12 col-md-6">
+                //                                     <div class="col-6 col-md-6">
                 //                                         <h5>Vehicle Obtained Date: </h5>
                 //                                         <p>${new Date(VehicleObtainedDate).toDateString()}</p>
                 //                                     </div>
@@ -875,19 +622,19 @@
                 //                     </div>
                 //                     <div class="card-footer pt-4">
                 //                         <div class="row">
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Title Issuing Authority Name: </h5>
                 //                                 <p>${TitleIssuingAuthorityName}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Vehicle Odometer Reading Measure: </h5>
                 //                                 <p>${VehicleOdometerReadingMeasure}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Vehicle Odometer Reading Unit Code: </h5>
                 //                                 <p>${VehicleOdometerReadingUnitCode}</p>
                 //                             </div>
-                //                             <div class="col-12 col-md-6">
+                //                             <div class="col-6 col-md-6">
                 //                                 <h5>Title Issue Date: </h5>
                 //                                 <p>${new Date(TitleIssueDate?.Date).toDateString()}</p>
                 //                             </div>

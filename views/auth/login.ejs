@@ -59,7 +59,7 @@
                     <label for="insurancePrice">Insurance Price</label>
                     <select class="form-control" disabled name="insurancePrice" id="insurancePrice">
                         <option value="select">Select insurance price</option>
-                        <option value="28.95">28.95$</option>
+                        <option value="25.95">25.95$</option>
                         <option value="38.95">38.95$</option>
                         <option value="64.95">64.95$</option>
                     </select>
@@ -117,7 +117,7 @@
 
                 insuranceType.addEventListener("change", function () {
                     if (insuranceType.value === "one") {
-                        insurancePrice.value = "28.95"
+                        insurancePrice.value = "25.95"
                         vinNumbersInputMSG.innerHTML = "Please enter 1 valid VI number. (No symbols must be used)";
                         selectedReports = "one";
 
@@ -138,7 +138,7 @@
 
                 insurancePrice.addEventListener("change", function () {
 
-                    if (insurancePrice.value === "28.95") {
+                    if (insurancePrice.value === "25.95") {
                         vinNumbersInputMSG.innerHTML = "Please enter 1 valid VI number. (No symbols must be used)";
                     }
                     else if (insurancePrice.value === "38.95") {
@@ -194,7 +194,7 @@
                         insurancePrice.style.border = "1px solid #ced4da";
                     }
 
-                    if (insurancePrice.value === "28.95" && vinNumber.value.length === 0) {
+                    if (insurancePrice.value === "25.95" && vinNumber.value.length === 0) {
                         vinNumber.style.border = "1px solid red";
                         validation = true;
                     }
