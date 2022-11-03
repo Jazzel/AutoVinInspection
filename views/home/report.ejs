@@ -62,7 +62,7 @@
                             </div>
                             <button id="submit">
                                 <div class="spinner hidden" id="spinner"></div>
-                                <span id="button-text">Pay now</span>
+                                <div id="paypal-button-container" class="paypal-button-container"></div>
                             </button>
                             <div id="payment-message" class="hidden"></div>
                         </form>
@@ -75,6 +75,8 @@
 
     <footer>
         <%- include('../partials/footer'); %>
+            <script src="https://www.paypal.com/sdk/js?client-id=<%= clientId %>&currency=USD"></script>
+
             <script>
                 if (!localStorage.getItem("report-loaded")) {
                     window.location.href = "/login";
@@ -104,7 +106,7 @@
 
             </script>
 
-            <script>
+            <!-- <script>
                 // This is a public sample test API key.
                 // Don’t submit any personally identifiable information in requests made with this key.
                 // Sign in to see your own test API key embedded in code samples.
@@ -233,9 +235,66 @@
                         document.querySelector("#button-text").classList.remove("hidden");
                     }
                 }
+            </script> -->
+
+
+
+            <script>
+                paypal
+                    .Buttons({
+                        // Sets up the transaction when a payment button is clicked
+                        createOrder: function (data, actions) {
+                            return fetch("/api/orders", {
+                                method: "post",
+                                headers: {
+                                    "content-type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    reportPrice: report.insurance_price,
+                                }),
+                            })
+                                .then((response) => response.json())
+                                .then((response) => {
+                                    console.log(response);
+                                    return response.id;
+                                });
+                        },
+
+                        // Finalize the transaction after payer approval
+                        onApprove: function (data, actions) {
+                            return fetch(`/api/orders/${data.orderID}/capture`, {
+                                method: "post",
+                            })
+                                .then((response) => response.json())
+                                .then(function (orderData) {
+                                    // Successful capture! For dev/demo purposes:
+                                    console.log(
+                                        "Capture result",
+                                        orderData,
+                                        JSON.stringify(orderData, null, 2)
+                                    );
+                                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                                    // alert(
+                                    //     "Transaction " +
+                                    //     transaction.status +
+                                    //     ": " +
+                                    //     transaction.id +
+                                    //     "\n\nSee console for all available details"
+                                    // );
+
+                                    // alert("Payment successful !!");
+
+                                    // When ready to go live, remove the alert and show a success message within this page. For example:
+                                    var element = document.getElementById('paypal-button-container');
+                                    element.innerHTML = '';
+                                    element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                                    // Or go to another URL: \
+                                    setTimeout(function () {
+                                        localStorage.setItem("payment", true);
+                                        window.location.href = "/generate-report";
+                                    }, 3000);
+                                });
+                        },
+                    })
+                    .render("#paypal-button-container");
             </script>
-    </footer>
-
-</body>
-
-</html>

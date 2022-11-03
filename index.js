@@ -11,7 +11,8 @@ const axios = require("axios").default;
 const stripe = require("stripe")(
   "sk_test_51LoAYVIElGq6BegsdpFcjYt2We338w2hY9GUoQcowpW4ANNS2KHfLSeyW4tR0c26JssJvZxuyW2iIDPBL3C7uTO40088qDudKZ"
 );
-const data = {};
+
+const paypal = require("./paypal.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +20,7 @@ app.set("view engine", "ejs");
 
 app.use("/img", express.static(__dirname + "/assets/img"));
 
-app.use("", require("./routes/home"));
+app.use("", require("./routes/home/index.js"));
 app.use("", require("./routes/auth"));
 
 app.post("/fetch-report", async (req, res) => {
@@ -101,6 +102,18 @@ app.post("/fetch-history-report", async (req, res) => {
       .status(400)
       .send({ msg: "Something went wrong. Try again later !" });
   }
+});
+
+app.post("/api/orders", async (req, res) => {
+  const { reportPrice } = req.body;
+
+  const order = await paypal.createOrder(reportPrice);
+  res.json(order);
+});
+app.post("/api/orders/:orderId/capture", async (req, res) => {
+  const { orderId } = req.params;
+  const captureData = await paypal.capturePayment(orderId);
+  res.json(captureData);
 });
 
 app.listen(PORT, () => {

@@ -16,8 +16,12 @@ router.get("/pricing", (req, res) => {
   res.render("home/pricing");
 });
 
-router.get("/report", (req, res) => {
-  res.render("home/report");
+router.get("/report", async (req, res) => {
+  // const clientId = CLIENT_ID;
+  const clientId =
+    "AYPtqjxuRAlpgI4gL5nx5uJz2Ixi_QN91YsjjAiabanfFR7edl1bUW3wLvvZqOTtD2oNAyocboodaU4I";
+
+  res.render("home/report", { clientId });
 });
 
 router.get("/generate-report", (req, res) => {

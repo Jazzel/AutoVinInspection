@@ -253,6 +253,8 @@
                                 vin_numbers: vinNumbers
                             }))
 
+                            localStorage.setItem("price", insurancePrice.value);
+
                             const response = await fetch("/fetch-report", {
                                 method: "POST",
 
