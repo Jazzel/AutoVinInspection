@@ -3,9 +3,9 @@ const fetch = require("node-fetch");
 
 const { CLIENT_ID, APP_SECRET } = {
   CLIENT_ID:
-    "AYPtqjxuRAlpgI4gL5nx5uJz2Ixi_QN91YsjjAiabanfFR7edl1bUW3wLvvZqOTtD2oNAyocboodaU4I",
+    "AbATW6gKKxkww5fT30_C9qzv-iNBHHZMu08aw54IFJMWcdGCsgFhV1_pkHt5ioYupuJHyPuFFvK8OhcH",
   APP_SECRET:
-    "ED6T93hMOOhYaDL8uP47hfcFb6B06f3Am4WujP5RquYdLmwVIjo8CVWBltawEaLBB8vFFQDntHsYVrDx",
+    "EHOKSAXC_MdkwizOZPTZWge5Gtew0MINWVvWlJD-2aVy_luvA4rSKdTFi3QrxkDlVnPZv_txAwo5mJsO",
 };
 const base = "https://api-m.sandbox.paypal.com";
 
